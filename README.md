@@ -1,17 +1,20 @@
 vagrant-devstack
 ================
 
+A narrow minded `devstack` `Vagrantfile` on `Ubuntu 12.04`.
+
 Usage
 =====
 
 Checkout branch:
 
 * stable/havana
+* stable/icehouse
 
 Start vagrant:
 
     $ vagrant up
-    $ vagrant ssh -c 'sudo /vagrant/vagrant.sh'
+    $ vagrant ssh -c 'sudo /vagrant/vagrant.bash'
 
 License
 =======
