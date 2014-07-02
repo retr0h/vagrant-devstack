@@ -4,6 +4,12 @@ vagrant-devstack
 Usage
 =====
 
+Checkout branch:
+
+* stable/havana
+
+Start vagrant:
+
     $ vagrant up
     $ vagrant ssh -c 'sudo /vagrant/vagrant.sh'
 
