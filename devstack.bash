@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-OPENSTACK_BRANCH=stable/icehouse
+OPENSTACK_BRANCH=stable/havana
 OPENSTACK_ADM_PASSWORD=devstack
 
 ROOT="$( cd "$( dirname "${0}" )" && pwd )"
