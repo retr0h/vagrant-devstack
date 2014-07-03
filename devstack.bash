@@ -2,8 +2,8 @@
 
 OPENSTACK_BRANCH=stable/icehouse
 OPENSTACK_ADM_PASSWORD=devstack
-BASHPATH="`dirname \"${0}\"`"               # relative
-BASHPATH="`( cd \"${BASHPATH}\" && pwd )`"  # absolutized and normalized
+
+ROOT="$( cd "$( dirname "${0}" )" && pwd )"
 PWD=$(su ${OS_USER} -c "cd && pwd")
 DEVSTACK=${PWD}/devstack
 
@@ -22,8 +22,8 @@ if [ ! -d "${DEVSTACK}" ]; then
 	awk '/install_pip.sh/ { print; print "sudo pip install --upgrade setuptools"; next }1' ${DEVSTACK}/stack.sh > ${DEVSTACK}/stack_patched.sh
 	chmod +x ${DEVSTACK}/stack_patched.sh
 
-	echo "Copy config from ${BASHPATH}/conf/local.conf to ${DEVSTACK}/local.conf"
-	cp ${BASHPATH}/conf/local.conf ${DEVSTACK}/local.conf
+	echo "Copy config from ${ROOT}/conf/local.conf to ${DEVSTACK}/local.conf"
+	cp ${ROOT}/conf/local.conf ${DEVSTACK}/local.conf
 	chown ${OS_USER}:${OS_USER} ${DEVSTACK}/local.conf
 fi
 
