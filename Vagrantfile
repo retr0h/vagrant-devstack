@@ -1,16 +1,12 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
 map = {
-  'fedora' => 'todo', # Fedora 20
-  'rhel' => 'todo', # CentOS/RHEL 6.5
-  'centos' => 'todo',
-  'ubuntu' => 'hashicorp/precise64'
+  'ubuntu' => 'hashicorp/precise64',
+  'cpu' => '2',
+  'memory' => '2048'
 }
 
 box = map[(ENV['DISTRO'] || 'ubuntu').downcase]
 
-Vagrant.configure("2") do |config|
+Vagrant.configure('2') do |config|
   config.vm.box = box
 
   vm_name = "#{box.split(/\//)[1]}"
@@ -19,10 +15,13 @@ Vagrant.configure("2") do |config|
     c.vm.network 'private_network', ip: '192.168.50.11' # eth1
   end
 
-  config.vm.provider 'virtualbox' do |p|
-    p.customize ['modifyvm', :id, '--memory', '2048']
+  config.vm.provider 'virtualbox' do |v|
+    v.customize ['modifyvm', :id, '--cpus', map['cpu']]
+    v.customize ['modifyvm', :id, '--memory', map['memory']]
   end
 
-  #config.vm.provision 'shell', inline: 'apt-get update; apt-get upgrade --yes'
-  #config.vm.provision 'shell', :path => 'vagrant.sh'
+  config.vm.provider 'vmware_fusion' do |v|
+    v.vmx['numvcpus'] = map['cpu']
+    v.vmx['memsize'] = map['memory']
+  end
 end
