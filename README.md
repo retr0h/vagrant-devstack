@@ -14,7 +14,6 @@ Checkout branch:
 Start vagrant:
 
     $ vagrant up
-    $ vagrant ssh -c 'sudo /vagrant/vagrant.bash'
 
 License
 =======

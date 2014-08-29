@@ -24,4 +24,6 @@ Vagrant.configure('2') do |config|
     v.vmx['numvcpus'] = map['cpu']
     v.vmx['memsize'] = map['memory']
   end
+
+  config.vm.provision 'shell', inline: '/vagrant/vagrant.bash'
 end
